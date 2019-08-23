@@ -5,7 +5,7 @@ const { database } = require('./keys');
 
 const pool = mysql.createPool(database);
 
-pool.getConnection((err, connection) => {
+pool.getConnection((err:any, connection:any) => {
   if (err) {
     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
       console.error('Database connection was closed.');

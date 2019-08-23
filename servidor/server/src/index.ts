@@ -1,18 +1,18 @@
 import express, {Application} from "express";
 import morgan from "morgan";
-const bodyParser =  require("body-parser");;
-const path = require("path");
-const passport = require('passport');
-const exphbs = require('express-handlebars');
+import bodyParser  from "body-parser";
+import path from "path";
+import passport from 'passport';
+import exphbs from 'express-handlebars';
 const validator = require('express-validator');
-const session = require('express-session');
+import session from 'express-session';
 const MySQLStore = require('express-mysql-session')(session);
-const {  conexion } = require('./config/keys');
-const {  database } = require('./config/keys');
+const conexion = require("./config/keys").conexion;
+const database = require("./config/keys").database;
 //requires
 require('./config/passport');
 //impots de rutas personalizadas
-import indexRoutes from "./routes/indexRoutes";
+//import indexRoutes from "./routes/indexRoutes";
 class Server {
   public app:Application;
   constructor() {
@@ -27,7 +27,6 @@ class Server {
     //static files
     this.app.use(express.static(path.join(__dirname, '/public')));
     this.app.use(morgan("dev"));
-    this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.urlencoded({extended: false}));
     //configuraciones login
@@ -38,6 +37,7 @@ class Server {
       saveUninitialized: false,
       store: new MySQLStore(database)
     }));
+    this.app.use(bodyParser.json());
     this.app.use(passport.initialize());
     this.app.use(passport.session());
     this.app.use(validator());
@@ -45,7 +45,7 @@ class Server {
 
 
   router():void {
-    this.app.use("/",indexRoutes);
+    //this.app.use("/",indexRoutes);
   }
 
   start(): void {
