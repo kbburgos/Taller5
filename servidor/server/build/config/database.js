@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const mysql = require('mysql');
 const { promisify } = require('util');
 const { database } = require('./keys');
@@ -23,4 +22,4 @@ pool.getConnection((err, connection) => {
 });
 // Promisify Pool Querys
 pool.query = promisify(pool.query);
-exports.default = pool;
+module.exports = pool;

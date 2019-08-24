@@ -12,7 +12,7 @@ const database = require("./config/keys").database;
 //requires
 require('./config/passport');
 //impots de rutas personalizadas
-//import indexRoutes from "./routes/indexRoutes";
+import indexRoutes from "./router/indexRouter";
 class Server {
   public app:Application;
   constructor() {
@@ -45,7 +45,7 @@ class Server {
 
 
   router():void {
-    //this.app.use("/",indexRoutes);
+    this.app.use("/",indexRoutes);
   }
 
   start(): void {

@@ -16,7 +16,7 @@ const database = require("./config/keys").database;
 //requires
 require('./config/passport');
 //impots de rutas personalizadas
-//import indexRoutes from "./routes/indexRoutes";
+const indexRouter_1 = __importDefault(require("./router/indexRouter"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -46,7 +46,7 @@ class Server {
         this.app.use(validator());
     }
     router() {
-        //this.app.use("/",indexRoutes);
+        this.app.use("/", indexRouter_1.default);
     }
     start() {
         this.app.listen(this.app.get("port"), () => {

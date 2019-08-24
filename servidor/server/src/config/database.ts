@@ -27,4 +27,4 @@ pool.getConnection((err:any, connection:any) => {
 // Promisify Pool Querys
 pool.query = promisify(pool.query);
 
-export default pool;
+module.exports = pool;
