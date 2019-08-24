@@ -2,6 +2,7 @@ import express, {Application} from "express";
 import morgan from "morgan";
 import bodyParser  from "body-parser";
 import path from "path";
+import mongoose from 'mongoose'
 import passport from 'passport';
 import exphbs from 'express-handlebars';
 const validator = require('express-validator');
@@ -49,8 +50,13 @@ class Server {
   }
 
   start(): void {
+
     this.app.listen(this.app.get("port"), () => {
       console.log("server on port: ", this.app.get("port"));
+      mongoose.connect("mongodb+srv://admin:admin@cluster0-bgnms.mongodb.net/test?retryWrites=true&w=majority",{ useNewUrlParser: true,dbName: 'taller5_daw' },)
+      .then(db=>{console.log("No Relational Data Base Connected");}).catch(e=>console.log(e))
+      ;
+    
     });
   }
 }

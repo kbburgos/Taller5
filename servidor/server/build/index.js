@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const path_1 = __importDefault(require("path"));
+const mongoose_1 = __importDefault(require("mongoose"));
 const passport_1 = __importDefault(require("passport"));
 const validator = require('express-validator');
 const express_session_1 = __importDefault(require("express-session"));
@@ -51,6 +52,8 @@ class Server {
     start() {
         this.app.listen(this.app.get("port"), () => {
             console.log("server on port: ", this.app.get("port"));
+            mongoose_1.default.connect("mongodb+srv://admin:admin@cluster0-bgnms.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, dbName: 'taller5_daw' })
+                .then(db => { console.log("No Relational Data Base Connected"); }).catch(e => console.log(e));
         });
     }
 }

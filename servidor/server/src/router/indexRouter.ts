@@ -12,6 +12,9 @@ class IndexRoutes {
     this.router.post("/login", indexController.login);
     this.router.post("/logout",indexController.logout);
     this.router.get("/panel",indexController.home);
+    this.router.get("/loadautores",indexController.loadautores)
+    this.router.get("/autores",indexController.getAutores);
+    this.router.get("/libautor/:autor",indexController.getRegistroByAutor);
   }
 }
 const indexRoutes = new IndexRoutes();

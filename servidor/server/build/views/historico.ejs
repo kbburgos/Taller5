@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+        href="//cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+
+    
+    <title>Historico</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a class="navbar-brand" href="/panel">Inicio</a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/panel">Historico <span class="sr-only">(current)</span></a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li> -->
+            </ul>
+
+        </div>
+    </nav>
+    <section class="my-4">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-around">
+                <div class="col-md-6">
+                    <h3>
+                        Historico de Autores
+                    </h3>
+
+                </div>
+                <div class="col-md-6">
+                    <!-- <form action="/panel" method="GET"> -->
+                        <select class="selectpicker" data-live-search="true" id="autor" title="Seleccione un autor...">
+                            <% autores.forEach(function(autor){ %>
+                                <option > <%= autor.nombre_completo %></option>
+
+                            <% }); %>
+                           
+                            
+                        </select>
+                        <button  class="btn btn-primary" id="buscar">
+                            Buscar
+                        </button>
+                    <!-- </form> -->
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+    <section id="cuerpo">
+            <h3 id="autorlib" class="text-center my-4 text-primary">Seleccione Un Autor</h3>
+            <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Libro</th>
+                        <th scope="col">Autores</th>
+                        <th scope="col">Calificacion Del Libro</th>
+                      </tr>
+                    </thead>
+                    <tbody id="resp">
+                      
+                    </tbody>
+                  </table>
+    </section>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="/js/historico.js"></script>
+
+</body>
+
+</html>
