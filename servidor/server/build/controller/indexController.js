@@ -11,10 +11,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
 const passport = require('passport');
-const { isNoLoggedIn } = require('../config/auth');
-const pool = require('./../config/database');
+const database_1 = __importDefault(require("./../config/database"));
 const registros_historicos_1 = __importDefault(require("./../models/registros_historicos"));
+let app = express_1.default();
 class IndexController {
     index(req, res) {
         res.render("login");
@@ -40,7 +41,7 @@ class IndexController {
     home(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let rows = yield pool.query("select * from autor");
+                let rows = yield database_1.default.query("select * from autor");
                 res.render("historico", { autores: rows });
             }
             catch (e) {
@@ -52,7 +53,7 @@ class IndexController {
     getAutores(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let rows = yield pool.query("select * from autor");
+                let rows = yield database_1.default.query("select * from autor");
                 res.json(rows);
             }
             catch (e) {
@@ -94,7 +95,7 @@ class IndexController {
                     }
                 }
                 for (let idx3 = 0; idx3 < autoresdist.length; idx3++) {
-                    yield pool.query('insert into autor (nombre_completo) values (?)	', [autoresdist[idx3]]);
+                    yield database_1.default.query('insert into autor (nombre_completo) values (?)	', [autoresdist[idx3]]);
                 }
                 res.json(autoresdist);
             }
@@ -102,6 +103,15 @@ class IndexController {
                 console.log(e);
                 res.status(500);
             }
+        });
+    }
+    verDatosUsuario(req, res) {
+        let { cedula } = req.params;
+        //res.render("calificacion");
+        //select titulo, lib.isbn as isbn, cal.usuario as usuario from calificacion as cal join libro lib where lib.isbn = cal.libro;
+        database_1.default.query("select titulo, lib.isbn as isbn, cal.usuario as usuario from calificacion as cal join libro lib where lib.isbn = cal.libro and cal.usuario = ?", [cedula], (err, rows) => {
+            res.render("notas", { data: rows });
+            return;
         });
     }
 }

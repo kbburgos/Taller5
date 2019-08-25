@@ -1,7 +1,7 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
+module.exports = {
     isLoggedIn(req, res, next) {
+        console.log(req.isAuthenticated());
         if (req.isAuthenticated()) {
             return next();
         }
@@ -11,6 +11,6 @@ exports.default = {
         if (!req.isAuthenticated()) {
             return next();
         }
-        return res.redirect('/login');
+        return res.redirect('/');
     }
 };

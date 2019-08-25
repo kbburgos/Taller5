@@ -1,8 +1,9 @@
 "use strict";
-const mysql = require('mysql');
+Object.defineProperty(exports, "__esModule", { value: true });
+let mysql = require('mysql');
 const { promisify } = require('util');
 const { database } = require('./keys');
-const pool = mysql.createPool(database);
+let pool = mysql.createPool(database);
 pool.getConnection((err, connection) => {
     if (err) {
         if (err.code === 'PROTOCOL_CONNECTION_LOST') {
@@ -22,4 +23,4 @@ pool.getConnection((err, connection) => {
 });
 // Promisify Pool Querys
 pool.query = promisify(pool.query);
-module.exports = pool;
+exports.default = pool;

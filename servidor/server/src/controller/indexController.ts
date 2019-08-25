@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import express, { Request, Response } from "express";
 const passport = require('passport');
-const { isNoLoggedIn } = require('../config/auth');
-const pool = require('./../config/database');
+import pool from './../config/database';
 import mongoose from 'mongoose';
 import historicos from "./../models/registros_historicos";
+let app = express();
 class IndexController {
   public index(req: Request, res: Response) {
     res.render("login");
@@ -65,8 +65,6 @@ class IndexController {
     }
   }
 
-
-
   public async loadautores(req:Request, res:Response){
     try{
       let autoresdist:Array<string>=[];
@@ -104,6 +102,17 @@ class IndexController {
       console.log(e);
       res.status(500);
     }
+  }
+
+  public verDatosUsuario(req:Request, res:Response){
+    let {cedula} = req.params;
+    //res.render("calificacion");
+      //select titulo, lib.isbn as isbn, cal.usuario as usuario from calificacion as cal join libro lib where lib.isbn = cal.libro;
+      pool.query("select titulo, lib.isbn as isbn, cal.usuario as usuario from calificacion as cal join libro lib where lib.isbn = cal.libro and cal.usuario = ?",[cedula],(err:any, rows:any)=>{
+        res.render("notas",{data: rows});
+        return;
+      });
+    
   }
 }
 export default new IndexController();

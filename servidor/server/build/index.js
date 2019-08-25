@@ -14,6 +14,7 @@ const express_session_1 = __importDefault(require("express-session"));
 const MySQLStore = require('express-mysql-session')(express_session_1.default);
 const conexion = require("./config/keys").conexion;
 const database = require("./config/keys").database;
+const ejsLint = require('ejs-lint');
 //requires
 require('./config/passport');
 //impots de rutas personalizadas
@@ -23,8 +24,10 @@ class Server {
         this.app = express_1.default();
         this.config();
         this.router();
+        this.global();
     }
     config() {
+        ejsLint.lint();
         this.app.set("port", process.env.PORT || 3000);
         this.app.set('view engine', 'ejs');
         this.app.set('views', path_1.default.join(__dirname, 'views'));
@@ -45,6 +48,12 @@ class Server {
         this.app.use(passport_1.default.initialize());
         this.app.use(passport_1.default.session());
         this.app.use(validator());
+    }
+    global() {
+        this.app.use((req, res, next) => {
+            this.app.locals.user = req.user;
+            next();
+        });
     }
     router() {
         this.app.use("/", indexRouter_1.default);

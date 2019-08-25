@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const pool = require('./database');
+import pool from './database';
 //const helpers = require('./helpers');
 
 passport.use('local.signin', new LocalStrategy({
