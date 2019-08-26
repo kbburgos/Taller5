@@ -29,12 +29,13 @@ class IndexController {
     res.redirect('/');
   }
 
+
   public async home(req:Request, res:Response){
     
     try{
       let rows =  await pool.query("select * from autor");
       
-      res.render("historico",{autores:rows});
+      //res.render("historico",{autores:rows});
 
     }catch(e){
       console.log(e);
@@ -42,6 +43,21 @@ class IndexController {
       
     }
   }
+
+
+  public async ingresarCalificacion(req:Request, res:Response){
+    const data = req.body;
+    try{
+      let rows =  await pool.query("INSERT INTO calificacion SET ?",[data]);
+      
+    }catch(e){
+      console.log(e);
+      res.status(500);
+    }
+    //console.log(req.body);
+    res.status(200).json(req.body);
+  }
+  
 
   public async getAutores(req:Request, res:Response){
     try{
@@ -65,6 +81,7 @@ class IndexController {
     }
   }
 
+ //me estresa tu red :) 
 
 
   public async loadautores(req:Request, res:Response){
@@ -106,4 +123,6 @@ class IndexController {
     }
   }
 }
+
 export default new IndexController();
+

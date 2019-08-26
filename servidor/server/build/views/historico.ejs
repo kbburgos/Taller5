@@ -19,6 +19,54 @@
 </head>
 
 <body>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="id2">Escoja una calificación para el libro</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body center-block">
+                            <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                      <input type="radio" class="form-check-input" name="optradio">1
+                                    </label>
+                            </div>
+                            <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                      <input type="radio" class="form-check-input" name="optradio">2
+                                    </label>
+                            </div>
+                            <div class="form-check-inline ">
+                                    <label class="form-check-label">
+                                      <input type="radio" class="form-check-input" name="optradio" >3
+                                    </label>
+                            </div>
+                            <div class="form-check-inline ">
+                                        <label class="form-check-label">
+                                          <input type="radio" class="form-check-input" name="optradio" >4
+                                        </label>
+                            </div>
+                            <div class="form-check-inline ">
+                                        <label class="form-check-label">
+                                          <input type="radio" class="form-check-input" name="optradio" >5
+                                        </label>
+                                  </div>
+
+                            <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                      <button type="" id="save" class="btn btn-primary">Guardar Calificación</button>
+                            </div>
+                    </div>
+
+                    
+                  </div>
+                </div>
+              </div>
+
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,13 +121,17 @@
     </section>
     <section id="cuerpo">
             <h3 id="autorlib" class="text-center my-4 text-primary">Seleccione Un Autor</h3>
+            <h3 id="isbn" class="text-center my-4 text-primary"></h3>
             <table class="table table-bordered">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Libro</th>
                         <th scope="col">Autores</th>
+                        <th scope="col">ISBN</th>
                         <th scope="col">Calificacion Del Libro</th>
+                        <th scope="col">Operación</th>
+
                       </tr>
                     </thead>
                     <tbody id="resp">
@@ -98,6 +150,7 @@
 
     <!-- (Optional) Latest compiled and minified JavaScript translation files -->
     <script src="/js/historico.js"></script>
+    <script src="/js/funciones.js"></script>
 
 </body>
 
