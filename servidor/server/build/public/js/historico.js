@@ -59,6 +59,7 @@ $(document).ready(function () {
     
     $('#save').on("click", function() {
         alert("Calificación guardada correctamente");
+        $("#exampleModalCenter").modal("toggle");
     });
     
 
@@ -98,5 +99,8 @@ $(document).ready(function () {
         console.log("ISBN del libro a calificar:",$(this).attr('id'));
         console.log("Nombre del autor",search);
       })
+
+
+
 
 }); 
