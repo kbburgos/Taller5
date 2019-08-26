@@ -7,6 +7,7 @@ class IndexRoutes {
 
   constructor() {
     this.config();
+
   }
   config():void {
     this.router.get("/",indexController.index);
@@ -17,6 +18,7 @@ class IndexRoutes {
     this.router.get("/autores",isLoggedIn,indexController.getAutores);
     this.router.get("/libautor/:autor",isLoggedIn,indexController.getRegistroByAutor);
     this.router.get("/notas/:cedula",isLoggedIn,indexController.verDatosUsuario);
+    this.router.post("/calificar",indexController.ingresarCalificacion);
   }
 }
 const indexRoutes = new IndexRoutes();
